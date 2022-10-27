@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// LeetCode - 46\
+// LeetCode - 46
 
 class Solution {
     void permutations(int index, vector<int> &nums,vector<vector<int>> &ans){
@@ -26,7 +26,7 @@ public:
 
 
 
-
+// LeetCode - 47
 // Permutaion without duplicates
 
 class Solution {
