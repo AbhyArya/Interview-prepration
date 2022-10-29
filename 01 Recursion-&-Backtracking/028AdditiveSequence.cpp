@@ -2,6 +2,7 @@
 using namespace std;
 
 // GFG - Additive Sequence
+// GFG - Sum-String
 
 
 bool isValid(string str){
