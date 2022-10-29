@@ -67,3 +67,29 @@ public:
         return ans;
     }
 };
+
+
+// Another method of subSet Using Power-Set
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> ans;
+        int n = nums.size();
+        for(int i = 0; i<(int)pow(2,n); i++){
+            int val = i;
+            int idx = n-1;
+            vector<int> temp;
+            while (val)
+            {
+                if(val&1){
+                    temp.push_back(nums[i]);
+                }
+                idx--;
+                val = val>>1;
+            }
+            reverse(temp.begin(), temp.end());
+            ans.push_back(temp);
+        }
+        return ans;
+    }
+};
