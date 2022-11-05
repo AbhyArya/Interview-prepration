@@ -19,8 +19,7 @@ class Solution {
         while(j>i && st[j]<=st[i]){
             j--;
         }
-        swap(st[i], st[j]);
-        
+        swap(st[i], st[j]);        
         reverse(st.begin()+i+1, st.end());
         return st;
     }
