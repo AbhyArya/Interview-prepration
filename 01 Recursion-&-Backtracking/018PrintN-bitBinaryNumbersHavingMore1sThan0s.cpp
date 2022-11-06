@@ -5,7 +5,6 @@ using namespace std;
 //GFG - Print N-bit binary numbers having more 1s than 0s
 
 class Solution{
-    int N;
     void allPos(int i, int n, int o,int z, string st, vector<string> & ans){
         if(i==n){
             ans.push_back(st);
@@ -13,7 +12,6 @@ class Solution{
         }
         allPos(i+1,n, o+1, z,st+"1",ans);
         if(z<o){
-            st[n] = '0';
             allPos(i+1,n ,o, z+1, st+"0",ans);
         }
     }

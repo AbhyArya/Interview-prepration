@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// GFG - Rotate Array
 
+// GFG - Rotate Array - left
 class Solution{ // Reversal Algorithm
     public:
     void rotateArr(int arr[], int d, int n){
@@ -14,12 +14,24 @@ class Solution{ // Reversal Algorithm
     }
 };
 
+// LeetCode - 189 - right
+class Solution {
+public:
+    void rotate(vector<int>& arr, int k) {
+        int n = arr.size();
+        k%=n;
+        reverse(arr.begin(),arr.end());
+        reverse(arr.begin()+k,arr.end());
+        reverse(arr.begin(),arr.begin()+k);
+        return;
+    }
+};
 
 class Solution{ // Junggling Algorithm
     public:
     void rotateArr(int arr[], int d, int n){
         d %= n;
-        int x = gcd(n,d);
+        int x = __gcd(n,d);
         for(int i = 0; i<x; i++){
             int temp = arr[i];
             int j = i;

@@ -2,7 +2,7 @@
 using namespace std;
 
 // GFG - Josephus Problem
-
+// LeetCode - 1824
 class Solution
 {
     int helper(int n , int k){
