@@ -82,7 +82,7 @@ public:
             while (val)
             {
                 if(val&1){
-                    temp.push_back(nums[i]);
+                    temp.push_back(nums[idx]);
                 }
                 idx--;
                 val = val>>1;
