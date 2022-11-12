@@ -2,7 +2,7 @@
 using namespace std;
 
 // LeetCode - 200
-
+// GFG - X Total Shape - no diagonal
 class Solution {
     void dfs(int i,int j, vector<vector<char>> &isConnected, vector<vector<bool>> &vis){
         if(i<0 || j<0 || i>=isConnected.size() || j>=isConnected[0].size() || isConnected[i][j]=='0' || vis[i][j])
