@@ -14,7 +14,7 @@ class Solution{
     }
     bool hamiltonianCycle(int pos, vector<int> &path,vector<unordered_set<int>> &adj){
         if(pos == path.size()){
-            // adj[pos-1].find(0)!=adj[pos-1].end();
+            adj[pos-1].find(0)!=adj[pos-1].end();
         }
         for(int i = 1; i<path.size(); i++){
             if(isSafe(i,pos,path,adj)){

@@ -46,3 +46,29 @@ class Solution {
         return ans;
     }
 };
+
+
+// Iterative DFS - similar to BFS using stack
+class Solution {
+  public:
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        vector<int> ans;
+        stack<int> st;
+        vector<int> vis(V);
+        st.push(0);
+        while(!st.empty()){
+            int src = st.top();
+            st.pop();
+            if(!vis[src]){
+                vis[src]=true;
+                ans.push_back(src);
+            }
+            for(auto child = adj[src].rbegin(); child!=adj[src].rend(); child++){
+                if(!vis[*child]){
+                    st.push(*child);
+                }
+            }
+        }
+        return ans;
+    }
+};
