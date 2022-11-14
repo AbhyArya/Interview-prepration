@@ -31,6 +31,37 @@ class Solution {
     }
 };
 
+// GFG - Using Color 
+class Solution {
+  int white = 0;
+  int gray = 1;
+  int black = 2;
+  bool dfs(int src, vector<int> adj[], vector<int> &color){
+        color[src]=gray;
+        for(auto child: adj[src]){
+            if(color[child]==white){
+                if(dfs(child, adj, color))
+                    return true;
+            }else if(color[child]==gray){
+                return true;
+            }
+        }
+        color[src]=black;
+        return false;
+    }
+  public:
+    bool isCyclic(int V, vector<int> adj[]) {
+        vector<int> color(V);
+        for(int i = 0; i<V; i++){
+            if(color[i]==white){
+                if(dfs(i,adj,color))
+                    return true;
+            }
+        }
+        return false;
+    }
+};
+
 
 // GFG - Using Kahn's Algorithms
 
