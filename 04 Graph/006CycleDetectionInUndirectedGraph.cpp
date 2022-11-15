@@ -58,3 +58,62 @@ class Solution {
         return false;
     }
 };
+
+
+
+
+// GFG - Detect Cycle using DSU
+
+class DisJointSet{ // Using Disjoint Union
+    vector<int> parent;
+    vector<int> size;
+    public:
+    DisJointSet(int n){
+        parent.resize(n);
+        size.resize(n);
+        for(int i = 0; i<n; i++){
+            parent[i]=i;
+        }
+    }
+    int findParent(int u){
+        if(parent[u]==u)
+            return u;
+        return parent[u] = findParent(parent[u]);
+    }
+    bool unionTwoVertices(int u, int v){
+        u = findParent(u);
+        v = findParent(v);
+        if(u==v)
+            return true;
+        if(size[u]>size[v]){
+            parent[v]=u;
+            size[u]++;
+        }else{
+             parent[u]=v;
+             size[v]++;
+        }
+        return false;
+    }
+};
+
+class Solution
+{
+    public:
+	int detectCycle(int V, vector<int>adj[]){
+	    set<pair<int,int>> st; // Set to store edges from given graph
+	    for(int i = 0;i<V; i++){
+	        for(auto v: adj[i]){
+	            if(st.find({i,v})!=st.end() || st.find({v,i})!=st.end())
+	                continue;
+	            st.insert({i,v});
+	        }
+	    }
+	    DisJointSet ds(V);
+	    for(auto v: st){
+	        if(ds.unionTwoVertices(v.first,v.second)){
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+};
