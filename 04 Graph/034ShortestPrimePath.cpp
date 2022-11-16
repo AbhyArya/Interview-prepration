@@ -70,3 +70,61 @@ public:
       return -1;
     }
 };
+
+
+// Accepted
+vector<bool> isPrime(10000,true);
+class Solution{   
+    static bool isFirst;
+    static void sieve(){
+        if(!isFirst)
+            return;
+        isFirst=false;
+        isPrime[0]=isPrime[1]=false;
+        for(int i=4;i<1e4;i+=2)
+            isPrime[i]=false;
+        for(int i=3;i*i<=9999;i+=2){
+            if(isPrime[i]){
+                for(int j=i*i;j<1e4;j+=(i<<1))
+                    isPrime[j]=false;
+            }
+        }
+    }   
+    public:
+    Solution(){
+        sieve();
+    }
+    int solve(int Num1,int Num2)
+    {   
+        int ans=0;
+        queue<int> q;
+        bool vis[10000]={false};
+        q.push(Num1);
+        vis[Num1]=true;
+        while(!q.empty()){
+            int s=q.size();
+            while(s--){
+                int u=q.front();
+                q.pop();
+                if(u==Num2)
+                    return ans;
+                string curr=to_string(u);
+                for(int i=0;i<4;i++){
+                    char c=curr[i];
+                    for(int j=0;j<10;j++){
+                        if(!i && !j)
+                            continue;
+                        curr[i]='0'+j;
+                        int v=stoi(curr);
+                        if(isPrime[v] && !vis[v])
+                            q.push(v),vis[v]=true;
+                    }
+                    curr[i]=c;
+                }
+            }
+            ans++;
+        }
+        return -1;
+    }
+};
+bool Solution::isFirst=true;
