@@ -57,8 +57,8 @@ class Solution{
         }
         int ans = 0;
         for(auto v: edges){
-            if(vetrices<=2)
-                break;
+      
+
             if(!d.findParent(v[0],v[1]))
                 ans++;
         }
