@@ -23,7 +23,7 @@ public:
 	    }
 	    if(isCycle)
 	        return 2;
-	    return count == 0 || count == 2;;
+	    return count == 0 || count == 2;
 	}
 };
 
