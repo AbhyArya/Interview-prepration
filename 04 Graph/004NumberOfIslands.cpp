@@ -15,19 +15,19 @@ class Solution {
     }
 public:
     int numIslands(vector<vector<char>>& isConnected) {
-        int n = isConnected.size();
-        int m = isConnected[0].size();
-        int ans = 0;
-        vector<vector<bool>> vis(n, vector<bool>(m));
-        for(int i = 0; i<n; i++){
-            for(int j = 0; j<m; j++){
-                if(isConnected[i][j] == '1' && !vis[i][j]){
-                    ans++;
-                    dfs(i,j, isConnected, vis);
+            int n = isConnected.size();
+            int m = isConnected[0].size();
+            int ans = 0;
+            vector<vector<bool>> vis(n, vector<bool>(m));
+            for(int i = 0; i<n; i++){
+                for(int j = 0; j<m; j++){
+                    if(isConnected[i][j] == '1' && !vis[i][j]){
+                        ans++;
+                        dfs(i,j, isConnected, vis);
+                    }
                 }
             }
-        }
-        return ans;
+            return ans;
     }
 };
 

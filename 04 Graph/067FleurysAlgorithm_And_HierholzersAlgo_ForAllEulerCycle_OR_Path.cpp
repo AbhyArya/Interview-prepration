@@ -1,8 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// GFG - Fleurys Algorithm
-
+// GFG - Fleurys Algorithm - For Directed/Undirected Graph
 class Solution{
     int isEularCircuit(int V, vector<vector<int>> &adj){
 	    vector<int> indegre(V);
@@ -86,5 +85,50 @@ class Solution{
         if(!isEular)
             return {};
         return getEulerTour(n,adj);
+    }
+};
+
+
+// Hierholzer's algo - For Directed Graph
+class Solution {
+public:
+    vector<vector<int>> validArrangement(vector<vector<int>>& pairs) {
+        // Assuming their eular path/cycle in given graph. else check first.
+        unordered_map<int,vector<int>> adj;
+        unordered_map<int,int> ind;
+        for(auto v: pairs){
+            adj[v[0]].push_back(v[1]);
+            ind[v[1]]--;
+            ind[v[0]]++;
+        }
+        if(!adj.size())
+            return{};
+        
+        int start = pairs[0][0];
+        for(auto v: ind){
+            if(v.second == 1){
+                start = v.first;
+            }
+        }
+        vector<int> circuit;
+        stack<int> curPath;
+        curPath.push(start);
+        while(!curPath.empty()){
+            int cur_node = curPath.top();
+            while(adj[cur_node].size()){
+                int next_node = adj[cur_node].back();
+                adj[cur_node].pop_back();
+                curPath.push(next_node);
+                cur_node = next_node;
+            }
+            int last = curPath.top();
+            circuit.push_back(last);
+            curPath.pop();
+        }
+        vector<vector<int>> ans;
+        for(int i = circuit.size()-1; i>0; i--){
+            ans.push_back({circuit[i],circuit[i-1]});
+        }
+        return ans;
     }
 };

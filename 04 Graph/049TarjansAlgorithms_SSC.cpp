@@ -23,7 +23,7 @@ class Solution{
                 tempAns.push_back(temp.top());
                 temp.pop();
             }
-             vis[temp.top()]=false;
+            vis[temp.top()]=false;
             tempAns.push_back(temp.top());
             temp.pop();
             sort(tempAns.begin(), tempAns.end()); // sorting is just to pass test-cases

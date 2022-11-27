@@ -7,10 +7,8 @@ class Solution{
     void dfs(int src,int &timer,int parent, vector<int> &dist, vector<int> &low,vector<int> adj[],vector<bool> &vis,vector<pair<int,int>> &ans){
         dist[src]=low[src]=++timer;
         vis[src]=true;
-        int children = 0;
         for(auto child: adj[src]){
             if(!vis[child]){
-                children++;
                 dfs(child,timer,src, dist, low, adj,vis,ans);
                 low[src] = min(low[src],low[child]);
                 if(low[child]>dist[src])
