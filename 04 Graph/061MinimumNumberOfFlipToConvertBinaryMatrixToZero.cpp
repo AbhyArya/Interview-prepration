@@ -1,7 +1,7 @@
 class Solution {
 public:
     void flip(int i, int j, vector<vector<int> > &adj) {
-        int m = adj.size(), n = adj[0].size();
+        int m = adj.size(), n = adj[0].size(); 
         adj[i][j] ^= 1;
         if(i-1 >= 0)
             adj[i-1][j] ^= 1;
