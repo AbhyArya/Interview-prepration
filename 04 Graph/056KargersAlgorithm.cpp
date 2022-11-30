@@ -2,7 +2,7 @@
 using namespace std;
 
 // GFG - Karger's Algorithm
-
+ 
 class DisJointSet{
     vector<int> parent;
     vector<int> rank;
