@@ -27,7 +27,7 @@ class DisjointSet{
         if (size[u]<size[v]){
             parent[u]=v;
             size[v]+=size[u];
-        }
+        } 
         else{
             parent[v]=u;
             size[u]+=size[v];
