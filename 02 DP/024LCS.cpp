@@ -39,22 +39,7 @@ class Solution{ // Tabulation
 };
 
 
-class Solution { // Tabulation - Accepted
-	public:
-		int LongestRepeatingSubsequence(string str){
-		    int x = str.size();
-		    vector<vector<int>> dp(x+1,vector<int>(x+1));
-            for(int i = x-1; i>=0; i--){
-                for(int j = x-1; j>=0; j--){
-                    if(i!=j && str[i]==str[j])
-                        dp[i][j] = 1+dp[i+1][j+1];
-                    else
-                        dp[i][j] = max(dp[i][j+1],dp[i+1][j]);
-                }
-            }
-            return dp[0][0];
-		}
-};
+
 
 // GFG - LCS of Three String
 class Solution{
@@ -73,4 +58,25 @@ class Solution{
         vector<vector<vector<int>>> dp(n1,vector<vector<int>>(n2,vector<int>(n3,-1)));
         return f(0,0,0,n1,n2,n3,s1,s2,s3,dp);
     }
+};
+
+
+
+// GFG - Maximum sum increasing subsequence
+class Solution{
+	public:
+	int maxSumIS(int arr[], int n)  {  
+	    vector<int> dp(n);
+	    int ans = 0;
+	    for(int i = 0; i<n; i++){
+    	    int sum = 0;
+	        for(int j = 0; j<i; j++){
+	            if(arr[i]>arr[j])
+	                sum = max(sum, dp[j]);
+	        }
+	        dp[i] = arr[i]+sum;
+	        ans = max(ans, dp[i]);
+	    }
+	    return ans;
+	}  
 };

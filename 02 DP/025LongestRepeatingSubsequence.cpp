@@ -20,3 +20,21 @@ class Solution { // Memoization - Not Accepted
             return f(0,0,x,x,str,str,dp);
 		}
 };
+
+
+class Solution { // Tabulation - Accepted
+	public:
+		int LongestRepeatingSubsequence(string str){
+		    int x = str.size();
+		    vector<vector<int>> dp(x+1,vector<int>(x+1));
+            for(int i = x-1; i>=0; i--){
+                for(int j = x-1; j>=0; j--){
+                    if(i!=j && str[i]==str[j])
+                        dp[i][j] = 1+dp[i+1][j+1];
+                    else
+                        dp[i][j] = max(dp[i][j+1],dp[i+1][j]);
+                }
+            }
+            return dp[0][0];
+		}
+};
