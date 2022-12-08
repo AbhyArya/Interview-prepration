@@ -17,3 +17,98 @@ class Solution{
         return ans;
     }
 };
+
+
+
+// GFG - Save Your Life
+
+class Solution{
+public:
+      string maxSum(string w,char x[], int b[],int n){
+        unordered_map<char,int> values;
+        for(char i = 'a'; i<='z'; i++)
+            values[i] = i;
+        for(char i = 'A'; i<='Z'; i++)
+            values[i] = i;
+        for(int i = 0; i<n; i++){
+            values[x[i]] = b[i];
+        }
+        int maxi = INT_MIN;
+        int sum = 0;
+        int start = 0;
+        int end = 0;
+        int s = 0;
+        for(int i = 0; i<w.size(); i++){
+            sum+=values[w[i]];
+            if(sum>maxi){
+                maxi = sum;
+                end = i;
+                start = s;
+            }
+            if(sum < 0){
+                sum = 0;
+                s = i+1;
+            }
+        }
+        return w.substr(start,end-start+1);
+      }
+};
+
+// GFG - Maximum difference of zeros and ones in binary string
+
+class Solution{
+public:	
+	int maxSubstring(string S){
+	    int n = S.size();
+	    int ans = INT_MIN;
+        int sum = 0;
+        for(int i = 0; i<n; i++){
+            if(S[i]=='1')
+                sum-=1;
+            else 
+                sum+=1;
+            ans = max(ans, sum);
+            if(sum<0)
+                sum = 0;
+        }
+        return ans;
+	}
+};
+
+
+// Maximum subarray sum in an array created after repeated concatenation
+
+class Solution{
+    int kadans(vector<int> &arr){
+        int n = arr.size();
+        int ans = INT_MIN;
+        int sum = 0;
+        for(int i = 0; i<n; i++){
+            if(sum<0)
+                sum = 0;
+            sum+=arr[i];
+            ans = max(ans, sum);
+        }
+        return ans;
+    }
+    int kadansInCycle(vector<int> &arr){
+        int n = arr.size();
+        int ans = INT_MIN;
+        int sum = 0;
+        for(int i = 0; i<2*n; i++){
+            if(sum<0)
+                sum = 0;
+            sum+=arr[i%n];
+            ans = max(ans, sum);
+        }
+        return ans;
+    }
+    int MaximumSum(vector<int> &arr,int k){
+        int n = arr.size();
+        int maxSum = kadans(arr);
+        if(k == 1)
+            return maxSum;
+        int maxSumInCycle = kadansInCycle(arr);
+        return max(maxSum, maxSumInCycle);
+    }
+};

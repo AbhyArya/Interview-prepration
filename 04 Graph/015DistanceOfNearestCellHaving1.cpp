@@ -3,11 +3,9 @@ using namespace std;
 
 // GFG - Distance of nearest cell having 1
 
-class Solution 
-{
+class Solution {
     public:
-    vector<vector<int>>nearest(vector<vector<int>>grid)
-	{
+    vector<vector<int>>nearest(vector<vector<int>>grid){
 	    int n = grid.size();
 	    int m = grid[0].size();
 	    queue<pair<pair<int,int>,int>> q;
