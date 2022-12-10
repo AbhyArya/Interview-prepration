@@ -57,3 +57,26 @@ class Solution{ // Using Binary Search
        return list.size();
     }
 };
+
+
+
+
+
+// GFG - Maximum sum increasing subsequence
+class Solution{
+	public:
+	int maxSumIS(int arr[], int n)  {  
+	    vector<int> dp(n);
+	    int ans = 0;
+	    for(int i = 0; i<n; i++){
+    	    int sum = 0;
+	        for(int j = 0; j<i; j++){
+	            if(arr[i]>arr[j])
+	                sum = max(sum, dp[j]);
+	        }
+	        dp[i] = arr[i]+sum;
+	        ans = max(ans, dp[i]);
+	    }
+	    return ans;
+	}  
+};

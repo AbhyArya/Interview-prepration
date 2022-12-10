@@ -112,3 +112,44 @@ class Solution{
         return max(maxSum, maxSumInCycle);
     }
 };
+
+
+// LeetCode - 1191
+class Solution {
+    int mod = 1e9+7;
+    long long kadans(vector<int> &arr){
+        long long sum = 0;
+        long long maxSum = 0;
+        for(auto v: arr){
+            sum+=v;
+            if(sum<0)
+                sum = 0;
+            maxSum = max(maxSum,sum);
+        }
+        return maxSum;
+    }
+    long long kadans2(vector<int> &arr){
+        int n = arr.size();
+        long long sum = 0;
+        long long maxSum = 0;
+        for(int i = 0; i<2*n; i++){
+            int v = arr[i%n];
+            sum+=v;
+            if(sum<0)
+                sum = 0;
+            maxSum = max(maxSum,sum);
+        }
+        return maxSum;
+    }
+public:
+    int kConcatenationMaxSum(vector<int>& arr, int k) {
+        long long maxSum = kadans(arr);
+        if(k==1)
+            return maxSum&mod;
+        long long maxSum2 = kadans2(arr);
+        long long sum = accumulate(arr.begin(), arr.end(),0);
+        if(sum<0)
+            return maxSum2%mod; 
+        return (maxSum2+(k-2)*sum)%mod;
+    }
+};

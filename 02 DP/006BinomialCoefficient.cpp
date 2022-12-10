@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// GFG Binomial Coefficient
-
+// GFG - Binomial Coefficient
+// GFG - Lob Number
 class Solution{
     int mod = 1e9+7;
     int nCr(int n, int r,vector<vector<int>>& dp){

@@ -27,3 +27,31 @@ public:
         return ans;
     }
 };
+
+
+// LeetCode - 139
+class Solution {
+    bool wordBreak(int i, string s, unordered_set<string> &st,vector<int> &dp){
+        if(i==s.size()){
+            return true;
+        }
+        if(dp[i]!=-1)
+            return dp[i];
+        for(int j = i; j<s.size(); j++){
+            string temp = s.substr(i,j-i+1);
+            if(st.find(temp)!=st.end()){
+                if(wordBreak(j+1,s,st,dp))
+                    return dp[i] = true;
+            }
+        }
+        return dp[i] = false;
+    }
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        int n = s.size();
+        vector<int> dp(n, -1);
+        unordered_set<string> st;
+        st.insert(wordDict.begin(), wordDict.end());
+        return wordBreak(0,s,st,dp);
+    }
+};

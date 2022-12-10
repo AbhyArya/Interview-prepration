@@ -3,6 +3,7 @@ using namespace std;
 
 // GFG - LCS
 // LeetCode - 1143
+
 class Solution{ // Memoization
     int f(int i, int j, int x, int y, string s1, string s2, vector<vector<int>> &dp){
         if(i==x || j==y)
@@ -58,25 +59,4 @@ class Solution{
         vector<vector<vector<int>>> dp(n1,vector<vector<int>>(n2,vector<int>(n3,-1)));
         return f(0,0,0,n1,n2,n3,s1,s2,s3,dp);
     }
-};
-
-
-
-// GFG - Maximum sum increasing subsequence
-class Solution{
-	public:
-	int maxSumIS(int arr[], int n)  {  
-	    vector<int> dp(n);
-	    int ans = 0;
-	    for(int i = 0; i<n; i++){
-    	    int sum = 0;
-	        for(int j = 0; j<i; j++){
-	            if(arr[i]>arr[j])
-	                sum = max(sum, dp[j]);
-	        }
-	        dp[i] = arr[i]+sum;
-	        ans = max(ans, dp[i]);
-	    }
-	    return ans;
-	}  
 };
