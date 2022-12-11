@@ -80,3 +80,41 @@ class Solution{
 	    return ans;
 	}  
 };
+
+
+
+// GFG - Printing Maximum Sum Increasing Subsequence
+class Solution{
+public:
+    vector<int> maxSumSequence(int N, int A[]){
+        vector<int>dp(N), parent(N);
+        int ans = 0;
+        int start=0;
+        for(int i = 0; i<N; i++){
+            int maxi = 0;
+            int p = i;
+            for(int j=0; j<i; j++){
+                if(A[i]>A[j]){
+                    if(maxi<dp[j]){
+                        maxi = dp[j];
+                        p = j;
+                    }
+                }
+            }
+            parent[i]=p;
+            dp[i] = maxi + A[i];
+            if(ans<dp[i]){
+                ans = dp[i];
+                start = i;
+            }
+        }
+        vector<int> res;
+        while(parent[start]!=start){
+            res.push_back(A[start]);
+            start = parent[start];
+        }
+        res.push_back(A[start]);
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};

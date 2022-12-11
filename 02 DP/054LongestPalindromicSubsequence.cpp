@@ -30,31 +30,29 @@ public:
         int n = s.size();
         string t = s;
         reverse(t.begin(), t.end());
-        vector<vector<int>> dp(n+1,vector<int> (n+1));
-        for(int i = n-1; i>=0; i--){
-            for(int j = n-1; j>=0; j--){
-                if(s[i]==s[j]){
-                    dp[i][j] = dp[i+1][j+1]+1;
-                }else{
-                    dp[i][j] = max(dp[i+1][j],dp[i][j+1]);
-                }
-                cout<<dp[i][j]<<" ";
+        vector<vector<int>> dp(n+1,vector<int>(n+1));
+        for (int i=0; i<=n; i++){
+            for (int j=0; j<=n; j++){
+                if (i == 0 || j == 0)
+                    dp[i][j] = 0;
+                else if (s[i-1] == t[j-1])
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                else
+                    dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
             }
-            cout<<endl;
         }
         string ans = "";
-        int i = 0;
-        int j = 0;
-        while(i<=n && j<=n){
-            if(s[i]==t[i]){
-                ans+=s[i];
-                i++;
-                j++;
-            }else if(dp[i][j+1]>dp[i+1][j]){
-                j++;
-            }else{
-                i++;
+        int i = n, j = n;
+        while (i > 0 && j > 0){
+            if (s[i-1] == t[j-1]){
+                ans+=s[i-1];
+                i--;
+                j--;
             }
+            else if (dp[i-1][j] > dp[i][j-1])
+                i--;
+            else
+                j--;
         }
         return ans;
     }
