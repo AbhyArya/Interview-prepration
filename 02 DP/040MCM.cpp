@@ -22,3 +22,43 @@ public:
         return f(1,N-1,arr, dp);
     }
 };
+
+
+
+// Brackets in MCM
+
+class Solution{
+    void getAns(int s, int e,int n, char& name, vector<vector<int>> &breakPoint, string &ans){
+        if(s==e){
+            ans+=name;
+            name++;
+            return;
+        }
+        ans+='(';
+        getAns(s,breakPoint[s][e],n,name,breakPoint,ans);
+        getAns(breakPoint[s][e]+1,e,n,name,breakPoint,ans);
+        ans+=')';
+    }
+public:
+    string matrixChainOrder(int p[], int n){
+         vector<vector<int>> dp(n, vector<int>(n));
+         vector<vector<int>> breakPoint(n, vector<int>(n));
+        for(int i = n-2; i>=1; i--){
+             for(int j = i+1; j<n; j++){
+                 int ans = 1e9;
+                 for(int k = i; k<j; k++){
+                     int val = p[i-1] * p[k] * p[j] + dp[i][k] + dp[k+1][j];
+                     if(val<ans){
+                         breakPoint[i][j] = k;
+                     }
+                     ans = min(ans, val);
+                 }
+                 dp[i][j] = ans;
+             }
+         }
+         string ans = "";
+         char name = 'A';
+         getAns(1,n-1,n,name,breakPoint,ans);
+         return ans;
+    }
+};
