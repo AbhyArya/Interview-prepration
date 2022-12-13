@@ -60,7 +60,7 @@ public:
                     pointers[i]++;
                 }
             }
-       }
+        }
         return ans;
     }
 };
