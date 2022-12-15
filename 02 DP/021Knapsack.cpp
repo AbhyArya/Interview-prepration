@@ -43,3 +43,36 @@ class Solution{
         return f(0,W,val,wt,n,dp);
     }
 };
+
+
+
+// GFG - Printing 0/1 knapsack
+class Solution{
+    public:
+    vector<int> knapSack(int W, int wt[], int val[], int n) { 
+        vector<vector<int>>dp (n,vector<int>(W+1,-1));
+        for (int i = 0; i <= n; i++) {
+            for (int w = 0; w <= W; w++) {
+                if (i == 0 || w == 0)
+                    dp[i][w] = 0;
+                else if (wt[i - 1] <= w)
+                    dp[i][w] = max(val[i - 1] + dp[i - 1][w - wt[i - 1]], dp[i - 1][w]);
+                else
+                    dp[i][w] = dp[i - 1][w];
+            }
+        }
+        int res = dp[n][W];
+        vector<int> ans; // index
+        int w = W;
+        for (int i = n; i > 0 && res > 0; i--) {
+            if (res == dp[i - 1][w])
+                continue;   
+            else {
+                ans.push_back(i-1);
+                res = res - val[i - 1];
+                w = w - wt[i - 1];
+            }
+        }
+        return ans;
+    }
+};

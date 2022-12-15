@@ -153,3 +153,38 @@ public:
         return (maxSum2+(k-2)*sum)%mod;
     }
 };
+
+
+
+// GFG - Max sum subarray by removing at most one element
+
+class Solution{
+    public:
+    int maxSumSubarray(int A[], int n){
+       vector<int> left(n), right(n);
+       int sum = 0;
+       int maxi = INT_MIN;
+       for(int i = 0; i<n; i++){
+           sum += A[i];
+           left[i] = sum;
+           maxi = max(sum, maxi);
+           if(sum < 0){
+               sum = 0;
+           }
+       }
+       sum = 0;
+       for(int i = n-1; i>=0; i--){
+           sum += A[i];
+           right[i] = sum;
+           if(sum < 0){
+               sum = 0;
+           }
+       }
+       int ans = maxi;
+       for(int i = 1; i<n-1; i++){
+           int val = left[i-1] + right[i+1];
+           ans = max(ans, val);
+       }
+       return ans;
+    }
+};
