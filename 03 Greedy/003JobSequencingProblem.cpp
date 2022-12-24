@@ -2,6 +2,10 @@
 using namespace std;
 
 // GFG - Job Sequencing Problem
+struct Job
+{
+    int profit,dead;
+};
 
 class Solution {
     public:
