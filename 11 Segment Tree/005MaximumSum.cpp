@@ -1,18 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// GFG - Sum of Query II
-// Practice Link - https://nados.io/question/sum-of-interval?zen=true
-// LeetCode - 307
-#include<bits/stdc++.h>
-using namespace std;
-class Solution{
+// Practice Link - https://nados.io/question/maximum-sum?zen=true
+
+class Solution1{
     int n;
     vector<int> arr;
-    vector<int> segmentTree;
+    vector<pair<int,int>> segmentTree;
+    pair<int,int> updateAns(pair<int,int> left, pair<int,int> right){
+        int sum = max(left.first,right.first);
+        sum = max(sum,left.second+right.second);
+        int maxi = max(left.second,right.second);
+        return {sum, maxi};
+    }
     void buildSegment(int index, int start, int end){
         if(start == end){
-            segmentTree[index] = arr[start];
+            segmentTree[index] = {arr[start],arr[start]};
             return;
         }
 
@@ -23,11 +26,11 @@ class Solution{
         buildSegment(leftIndex, start, mid);
         buildSegment(rightIndex, mid+1, end);
 
-        segmentTree[index] = segmentTree[leftIndex]+segmentTree[rightIndex];
+        segmentTree[index] = updateAns(segmentTree[leftIndex],segmentTree[rightIndex]);
     }
-    int sumInRange(int index, int start, int end, int left,int right){
+    pair<int,int> getAns(int index, int start, int end, int left,int right){
         if(end<left || start>right)
-            return 0;
+            return {0,0};
         if(start >= left && end<=right){    
             return segmentTree[index];
         }
@@ -36,15 +39,15 @@ class Solution{
         int leftIndex = 2*index;
         int rightIndex = 2*index+1;
 
-        int leftAns = sumInRange(leftIndex, start, mid, left, right);
-        int rightAns = sumInRange(rightIndex, mid+1, end, left, right);
+        auto leftAns = getAns(leftIndex, start, mid, left, right);
+        auto rightAns = getAns(rightIndex, mid+1, end, left, right);
 
-        return leftAns+rightAns;
+        return updateAns(leftAns,rightAns);
     }
     void updateSegment(int index, int start, int end, int indexWhereUpdate, int val){
         if(start == end){
             arr[indexWhereUpdate] = val;
-            segmentTree[index] = val;
+            segmentTree[index] = {val,val};
             return;
         }
         
@@ -57,18 +60,18 @@ class Solution{
         else
             updateSegment(rightIndex,mid+1,end,indexWhereUpdate,val);
 
-        segmentTree[index] = segmentTree[leftIndex]+segmentTree[rightIndex];
+        segmentTree[index] = updateAns(segmentTree[leftIndex],segmentTree[rightIndex]);
 
     }
     public:    
-    Solution(vector<int> arr){
+    Solution1(vector<int> arr){
         n = arr.size();
         this->arr = arr;
         segmentTree.resize(4*n);
         buildSegment(1,0,n-1);
     }
-    int sumInRange(int left, int right){
-        return sumInRange(1,0,n-1,left,right);
+    int getAns(int left, int right){
+        return getAns(1,0,n-1,left,right).first;
     }
     void update(int index, int val){
         updateSegment(1,0,n-1,index,val);
@@ -83,7 +86,7 @@ int main(){
         cin>>x;
         arr.push_back(x);
     }
-    Solution obj(arr);
+    Solution1 obj(arr);
     int queryLen;
     cin>>queryLen;
     for(int i = 0; i<queryLen; i++){
@@ -98,7 +101,7 @@ int main(){
             int left;
             int right;
             cin>>left>>right;
-            cout<<obj.sumInRange(left, right)<<endl;
+            cout<<obj.getAns(left, right)<<endl;
         }
     }    
 }

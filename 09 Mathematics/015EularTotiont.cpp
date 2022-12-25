@@ -22,9 +22,9 @@ public:
         long long ans = n;
         for(long long i = 2; i*i<=n; i++){
             if(n%i == 0){
+                ans -= ans/i;
                 while(n%i==0)
                     n/=i;
-                ans -= ans/i;
             }
         }
         if(n>1)
@@ -42,6 +42,6 @@ public:
     GCD(n,k) == 1, where(k!=n)
 
 
-    eular(a*b) = eular(a)*eular(b) = gcd(a,b)/eular(gcd(a,b))
+    eular(a*b) = eular(a)*eular(b) = gcd(a,b)/eular(gcd(a,b)) // a and b is not co-prime
     pow(a,Φ(n)) ≡ 1 (mod n) 
 */
