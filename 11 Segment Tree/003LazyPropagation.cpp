@@ -133,7 +133,6 @@ class Solution1{
     }
     void update(int index, int start, int end, int left, int right,int val){
         propogation(index,start,end);
-
         if(end<left || start>right)
             return;
         if(start>=left && end<=right){

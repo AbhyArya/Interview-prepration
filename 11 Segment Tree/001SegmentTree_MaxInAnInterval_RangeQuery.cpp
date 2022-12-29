@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// GFG - Segment Tree -Maximum in Range
+// GFG - Segment Tree - Maximum in Range
 // Practice Link - https://nados.io/question/max-in-a-interval-range-query-point-update?zen=true
 
 class Solution{
