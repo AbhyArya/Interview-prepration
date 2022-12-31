@@ -2,7 +2,7 @@
 using namespace std;
 
 // GFG - Activity Selection
-
+// GFG - N-Meeting in one room
 class Solution{
     public:
     int activitySelection(vector<int> start, vector<int> end, int n)
