@@ -46,14 +46,4 @@ public:
         }
         return true;
     }
-};12345567890-\][poiuytrewqwe   asdfghjkl;'
-
-+----------------------------
-........
-.
-+.
-.+
--
-+6-+
-+
-+llllkkkjjhhhykkjjkk;jhhjkkjjhhbb   ghggf5555klllllll']
+};

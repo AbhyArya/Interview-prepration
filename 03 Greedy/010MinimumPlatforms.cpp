@@ -1,8 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// GFG - Minimum Platforms
-
+// GFG - Minimum Platform
 class Solution{
     public:
     int findPlatform(int arr[], int dep[], int n){

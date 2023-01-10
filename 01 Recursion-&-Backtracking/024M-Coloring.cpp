@@ -66,7 +66,3 @@ public:
         return backtracking(0,m,n,graph,color);
     }
 };
-
-
-
-// using BFS 

@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-// this technique is to optimize the time complexity here is an optimization on finding subset sum.
+// This technique is to optimize the time complexity here is an optimization on finding subset sum.
 // GFG - Meet In The Middle
 // https://www.geeksforgeeks.org/meet-in-the-middle/
 

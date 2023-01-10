@@ -40,3 +40,76 @@ public:
         return prev;
     }
 };
+
+
+// LeetCode - 92
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        if(left == right)
+            return head;
+        ListNode* dummy = new ListNode();
+        dummy->next = head;
+        ListNode* x = dummy;
+        int k = right-left+1;
+        while(left>1){
+            x = x->next;
+            left--;
+        }
+        ListNode* prev = NULL;
+        ListNode* cur = x->next;
+        ListNode* next = cur;
+        ListNode* y=x->next;
+        while(k){
+            next = next->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+            k--;
+        }
+        x->next = prev;
+        y->next = cur;
+        return dummy->next;
+    }
+};
+
+
+// LeetCode - 15
+
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int K) {
+        if(K==1)
+            return head;
+        int len = 0;
+        ListNode* dummy = new ListNode();
+        dummy->next = head;
+        while(dummy->next){
+            dummy = dummy->next;
+            len++;
+        }
+        int part = len/K;
+        dummy = new ListNode();
+        dummy->next = head;
+        ListNode* x = dummy;
+        while(part){
+            ListNode* prev = NULL;
+            ListNode* cur = x->next;
+            ListNode* next = cur;
+            ListNode* y = x->next;
+            int k = K;
+            while(k){
+                next = next->next;
+                cur->next = prev;
+                prev = cur;
+                cur = next;
+                k--;
+            }
+            x->next = prev;
+            y->next = cur;
+            x = y;
+            part--;
+        }
+        return dummy->next;
+    }
+};

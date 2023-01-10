@@ -1,8 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
+// similar approach in "WORD BOGGLE/WORD BOGGLE-2" on GFG with little-bit changes in code
 
 // LeetCode - 79
-
+// GFG - Word Boggle
 class Solution {
     bool dfs(int i, int j, int k, vector<vector<char>>& board, string word,int n, int m){
         if(k==word.size())
@@ -36,7 +37,8 @@ public:
 };
 
 
-// Word Search II
+// LeetCode - Word Search II
+// GFG - Word Boggle-2
 
 struct Node{
     char c;
@@ -128,5 +130,3 @@ public:
         return ans;
     }
 };
-
-// similar approach in "WORD BOGGLE/WORD BOGGLE-2" on GFG with little-bit changes in code
