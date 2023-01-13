@@ -2,6 +2,7 @@
 using namespace std;
 
 // GFG - Missing Number
+// LeetCode - 268
 
 int missingNumber(int A[], int n){
     for(int i = 0; i<n-1; i++){
@@ -36,3 +37,26 @@ int missingNumber(int A[], int n){
         ans^=i;
     return ans;
 }
+
+
+// LeetCode - 287
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int n = nums.size();
+        for(int i = 0; i<n; i++){
+            int curIndex = nums[i]-1;
+            if(nums[i]!=nums[curIndex]){
+                swap(nums[i],nums[curIndex]);
+                i--;
+            }
+        }
+        for(int i = 0; i<n; i++){
+            if(nums[i]-1!=i){
+                return nums[i];
+            }
+        }
+        return -1;
+    }
+};

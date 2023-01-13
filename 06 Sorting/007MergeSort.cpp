@@ -3,7 +3,7 @@ using namespace std;
 
 // GFG - Merge Sort
 
-class Solution{
+class Solution{ // Based On divide and conquer
     public:
     void merge(int arr[], int l, int m, int r){
         int n1 = m-l+1;

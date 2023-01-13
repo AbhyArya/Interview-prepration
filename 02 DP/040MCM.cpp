@@ -25,7 +25,7 @@ public:
 
 
 
-// Brackets in MCM
+// GFG - Brackets in MCM
 
 class Solution{
     void getAns(int s, int e,int n, char& name, vector<vector<int>> &breakPoint, string &ans){

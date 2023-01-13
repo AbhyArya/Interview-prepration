@@ -1,10 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// LeetCode - 34
 // GFG - First And Last Occurrences of X
 
 class Solution{
-    int binarySearch(int arr[], int n, int x, int which){
+    int binarySearch(vector<int> &arr, int n, int x, int which){
         int left = 0;
         int right = n-1;
         int ans = -1;
@@ -25,10 +26,12 @@ class Solution{
         }
         return ans;
     }
-    vector<int> find(int arr[], int n , int x ){
+    public:
+    vector<int> searchRange(vector<int>& arr, int target){
+        int n = arr.size();
         vector<int> ans;
-        ans.push_back(binarySearch(arr,n,x,0));
-        ans.push_back(binarySearch(arr,n,x,1));
+        ans.push_back(binarySearch(arr,n,target,0));
+        ans.push_back(binarySearch(arr,n,target,1));
         return ans;
     }
 };

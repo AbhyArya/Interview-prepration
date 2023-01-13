@@ -3,7 +3,7 @@ using namespace std;
 
 // GFG - Quick Sort
 
-class Solution{
+class Solution{ // Based On divide and conquer
     int partition (int arr[], int low, int high){
         int pivot = arr[high];
         int i = low-1;
