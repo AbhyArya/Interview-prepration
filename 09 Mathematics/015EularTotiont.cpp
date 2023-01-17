@@ -1,9 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// GFG - Eular Totient
+// GFG - Eular Totient - To find numbers of coprimes in between
 
-class Solution{
+class Solution{ // Brute-force
 public:
     long long ETF(long long n){
         long long ans = 1;
@@ -42,6 +42,10 @@ public:
     GCD(n,k) == 1, where(k!=n)
 
 
-    eular(a*b) = eular(a)*eular(b) = gcd(a,b)/eular(gcd(a,b)) // a and b is not co-prime
-    pow(a,Φ(n)) ≡ 1 (mod n) 
+    eular(a*b) = eular(a)*eular(b) // a and b is co-prime
+    eular(a*b) = gcd(a,b)/eular(gcd(a,b)) // a and b is not co-prime
+    
+    pow(a,eular(b)) ≡ 1 (mod b) => pow(a,eular(b))%n = 1 if a and b is co-prime
+    pow(a,b-1) ≡ 1 (mod b) if a and b is prime number
+
 */

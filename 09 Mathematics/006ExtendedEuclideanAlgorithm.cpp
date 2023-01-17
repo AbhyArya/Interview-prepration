@@ -57,10 +57,8 @@ class Solution { // Single solution
     return {gcd, {x1, y1}};
   }
 public:
-  vector<int> solution(int a, int b,int c, int left, int right) {
-    int x = 0, y = 0;
+  vector<int> solution(int a, int b,int c) {
     auto ans = euclidean(a, b);
-    int gcd = __gcd(a,b);
     return {ans.second.first*c, ans.second.second*c};
   }
 };
@@ -80,11 +78,12 @@ public:
   vector<vector<int>> solution(int a, int b,int c, int count) {
     int x = 0, y = 0;
     auto ans = euclidean(a, b);
-    int gcd = __gcd(a,b);
+    int gcd = ans.first;
     vector<vector<int>> res;
     res.push_back({ans.second.first*c, ans.second.second*c});
-    while (count--){
-        res.push_back({ans.second.first-count*(b/gcd), ans.second.second*(a/gcd)});
+    while (count){
+        res.push_back({res[0][0]-count*(b/gcd), res[0][1]+count*(a/gcd)});
+        count--;
     }
     return res;
   }

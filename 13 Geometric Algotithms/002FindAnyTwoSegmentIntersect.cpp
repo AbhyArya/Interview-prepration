@@ -3,7 +3,7 @@ using namespace std;
 
 // GFG - Given n line segments, find if any two segments intersect
 // I was just Copy paste the GFG Solution because this is more readable and I didn't want to re-write the in vector containter.
-class Solution{
+class Solution{ // using line sweeping algorithm
     struct Point{
         int x, y;
     };

@@ -21,8 +21,8 @@ using namespace std;
         4->     (a*b)%n == (a%n * b%n)%n
         5->     (a-b)%n == (a%n - b%n)%n == (a-b+n)%n 
         6->     (a/b)%n == (a*pow(b,-1))%n == (a*pow(b,n-2))%n == (a%n * pow(b,n-2)%n)%n - if(n == prime)
-        7->     pow(a,b)%n = (a*a*a*a.....a*a*a...b-times)%n if(a>b)
-        8->     pow(a,b)%n = pow(a,b%(n-1)) if(a<b)
+        7->     pow(a,b)%n = (a*a*a*a.....a*a*a...b-times)%n if(n>b)
+        8->     pow(a,b)%n = pow(a,b%(n-1)) if(b>n)
 
 
 */

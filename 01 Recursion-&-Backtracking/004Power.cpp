@@ -20,7 +20,11 @@ public:
         return power(x,n);
     }
 };
-class Solution{ // Iterative 
+
+
+
+class Solution{ // Iterative - for positive power
+    public:
     long long binpow(long long a, long long b) {
         long long res = 1;
         while (b > 0) {

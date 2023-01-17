@@ -6,6 +6,7 @@ using namespace std;
 // GFG - Number of Unique BST
 class Solution{
     int mod = 1e9+7;
+    public:
     int nCr(int n, int r,vector<vector<int>>& dp){
         if(r>n)
             return 0;
@@ -24,10 +25,6 @@ public:
 
 
 
-
-
-
-// Permutation Coefficient
 class Solution{
     int mod = 1e9+7;
     int nCr(int n, int r,vector<vector<int>>& dp){
@@ -46,6 +43,7 @@ public:
     }
 };
 
+// Permutation Coefficient
 class Solution{
     public:
         int permutationCoeff(int n, int k){
