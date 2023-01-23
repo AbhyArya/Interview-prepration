@@ -4,7 +4,6 @@ using namespace std;
 // GFG - Count Inversions
 
 class Solution{
-    public:
     long long int merge(long long arr[],long long temp[], long long l, long long m, long long r){
         long long int count = 0;
         int k = l;

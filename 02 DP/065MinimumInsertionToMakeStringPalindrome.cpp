@@ -21,7 +21,6 @@ class Solution{ // Memoization
         vector<vector<int>> dp(x,vector<int>(x,-1));
         int lcs = f(0,0,x,s1,s2,dp);
         int ans = x - lcs;
-
         return ans;
     }
 };
