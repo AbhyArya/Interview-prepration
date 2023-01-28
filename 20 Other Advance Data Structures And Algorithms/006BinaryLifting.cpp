@@ -3,8 +3,6 @@ using namespace std;
 
 // Practice Link - https://nados.io/question/k-th-ancestor?zen=true
 
-#include<bits/stdc++.h>
-using namespace std;
 class Solution{
     vector<vector<int>> table;
     void buildTable(vector<int> parent){

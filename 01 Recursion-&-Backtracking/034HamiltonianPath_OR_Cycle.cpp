@@ -72,3 +72,47 @@ class Solution{
         return false;
     }
 };
+
+
+
+// GFG - Count the hamiltonian path
+
+class Solution{
+    public:
+    int findAllPaths(int n, vector<vector<int>>& graph){ // Below code was mentioned on the GFG but i didn't understand the intution behind the implemented code.
+        vector<vector<int>> dp(n,vector<int>(((1<<n), 0)));
+        dp[0][1] = 1;
+    
+        // Iterate over all the masks
+        for (int i = 2; i < (1 << n); i++) {
+    
+            // If the first vertex is absent
+            if ((i & (1 << 0)) == 0)
+                continue;
+    
+            // Only consider the full subsets
+            if ((i & (1 << (n - 1)))
+                && i != ((1 << n) - 1))
+                continue;
+    
+            // Choose the end city
+            for (int end = 0; end < n; end++) {
+    
+                // If this city is not in the subset
+                if (i & (1 << end) == 0)
+                    continue;
+    
+                // Set without the end city
+                int prev = i - (1 << end);
+    
+                // Check for the adjacent cities
+                for (int it : graph[end]) {
+                    if ((i & (1 << it))) {
+                        dp[end][i] += dp[it][prev];
+                    }
+                }
+            }
+        }
+        return dp[n - 1][(1 << n) - 1];
+    }
+};

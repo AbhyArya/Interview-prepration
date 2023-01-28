@@ -135,3 +135,66 @@ class Solution{ // Binary Search
             return l;
         }
 };
+
+
+// GFG - Vertex Cover for Binary tree - Similar to House Robber- III
+
+struct Node{
+    int data;
+    int vc;
+    struct Node *left, *right;
+};
+
+class Solution{
+    unordered_map<Node*, int> dp;
+    public:
+    int vertexCover(Node* root){
+        if(!root)
+            return 0;
+        if(!root->left && !root->right)
+            return 0;
+        if(dp.find(root)!=dp.end())
+            return dp[root];
+        int size_incl = 1 + vertexCover(root->left)+vertexCover(root->right);
+        int size_excl = 0;
+        if(root->left)
+            size_excl += 1 + vertexCover(root->left->left) + vertexCover(root->left->right);
+        if(root->right)
+            size_excl += 1 + vertexCover(root->right->left) + vertexCover(root->right->right);
+        return dp[root] = min(size_incl, size_excl);
+    }
+};
+
+
+
+// GFG - Vertex Cover In Generic Tree
+class Solution{
+    int dfs(int src, int parent, vector<vector<int>> &adj, vector<vector<int>> &dp){
+        for(auto child: adj[src]){
+            if(child!=parent){
+                dfs(child,src,adj,dp);
+            }
+        }
+        for(auto child: adj[src]){
+            if(child != parent){
+                dp[src][0] += dp[child][1];
+                dp[src][1] += min(dp[child][1], dp[child][0]);
+            }
+        }
+    }
+    public:
+    int vertexCover(vector<int> &parent){
+        int n = parent.size();
+        vector<vector<int>> adj(n);
+        vector<vector<int>> dp(n);
+        for(int i = 0; i<n; i++){
+            dp[i].push_back(0);
+            dp[i].push_back(1);
+        }
+        for(int i = 1; i<n; i++){
+            adj[parent[i]].push_back(i);
+        }
+        dfs(0,-1,adj,dp);
+        return min(dp[0][0],dp[0][1]);
+    }
+};

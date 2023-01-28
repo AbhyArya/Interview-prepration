@@ -3,11 +3,13 @@ using namespace std;
 
 // GFG - Next Greater Element
 
-int n = nums.size();
+class Solution{
+    vector<int> nextGreaterElement(vector<int> &nums){
+        int n = nums.size();
         vector<int> ans(n);
         stack<int> st;
         for(int i = n-1; i>=0; i--){
-            while(!st.empty() && nums[st.top()]>=nums[i]){
+            while(!st.empty() && nums[st.top()]<=nums[i]){
                 st.pop();
             }
             if(st.empty())
@@ -17,3 +19,5 @@ int n = nums.size();
             st.push(i);
         }
         return ans;
+    }
+};

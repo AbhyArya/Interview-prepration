@@ -77,3 +77,26 @@ public:
         return ans;
     }
 };
+
+
+// LeetCode - 923
+
+class Solution {
+    int mod = 1e9+7;
+public:
+    int threeSumMulti(vector<int>& arr, int target) {
+        int n = arr.size();
+        sort(arr.begin(),arr.end());
+        int ans = 0;
+        unordered_map<int,int> um;
+        for(int i = 0; i<n; i++){
+            int val = target - arr[i];
+            ans += um[val];
+            ans %= mod;
+            for(int j = 0; j<i; j++){
+                um[arr[j]+arr[i]]++;
+            }
+        }
+        return ans;
+    }
+};
