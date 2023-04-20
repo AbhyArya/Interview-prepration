@@ -211,3 +211,50 @@ public:
         return f(0, n-1,true, stones);
     }
 };
+
+
+// LeetCode - 1686
+
+class Solution {
+public:
+    int stoneGameVI(vector<int>& aliceValues, vector<int>& bobValues) {
+        int n = aliceValues.size();
+        priority_queue<pair<int,int>> pq1,pq2;
+        for(int i = 0; i<n; i++){
+            pq1.push({aliceValues[i],i});
+            pq2.push({bobValues[i],i});
+        }
+        unordered_set<int> st;
+        int alice = 0;
+        int bob = 0;
+        bool aliceChance = true;
+        while(!pq1.empty()){
+            if(aliceChance){
+                if(pq1.top().first >= pq2.top().first){
+                    alice+=pq1.top().first;
+                    st.insert(pq1.top().second);
+                }else{
+                    alice+=aliceValues[pq2.top().second];
+                    st.insert(pq2.top().second);
+                }
+            }else{
+                if(pq2.top().first >= pq1.top().first){
+                    bob+=pq2.top().first;
+                    st.insert(pq2.top().second);
+                }else{
+                    bob+=bobValues[pq1.top().second];
+                    st.insert(pq2.top().second);
+                }
+            }  
+            aliceChance = !aliceChance;
+            while(!pq1.empty() && st.find(pq1.top().second)!=st.end()){
+                pq1.pop();
+            }
+            while(!pq2.empty() && st.find(pq2.top().second)!=st.end()){
+                pq2.pop();
+            }
+        }
+        if(alice==bob) return 0;
+        return (alice>bob)? 1: -1;
+    }
+};

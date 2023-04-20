@@ -22,6 +22,7 @@ struct Node{
         return flag;
     }
 };
+
 class Trie {
   Node* root;
 public:

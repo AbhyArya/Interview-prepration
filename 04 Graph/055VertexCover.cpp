@@ -145,7 +145,7 @@ struct Node{
     struct Node *left, *right;
 };
 
-class Solution{
+class Solution{ // It is to cover the connected edges
     unordered_map<Node*, int> dp;
     public:
     int vertexCover(Node* root){
@@ -165,6 +165,37 @@ class Solution{
     }
 };
 
+
+// LeetCode - 968
+// Vertex Cover for Binary tree 
+
+class Solution {  // Cover adjacent Vertex 
+    pair<int,int> vertexCover(TreeNode* root){
+        if(!root)
+            return {0,0};
+        if(!root->left && !root->right)
+            return {0,2};
+        auto left = vertexCover(root->left);
+        auto right = vertexCover(root->right);
+
+        if(left.second == 2 || right.second == 2)
+            return {left.first+1+right.first, 1};
+        if(left.second == 1 && right.second == 1)
+            return {left.first+right.first, 0};
+        if(left.second == 0 && right.second == 0)
+            return {left.first+right.first, 2};
+        return {left.first+right.first, 0};
+    }
+public:
+    int minCameraCover(TreeNode* root) {
+         if(!root->left && !root->right)
+            return 1;
+        auto ans = vertexCover(root);    
+        if(ans.second == 2)
+            return ans.first+1;
+        return ans.first;    
+    }
+};
 
 
 // GFG - Vertex Cover In Generic Tree

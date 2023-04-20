@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+
 // GFG - Sortest Unique prefix for every word
 
 class TrieNode{

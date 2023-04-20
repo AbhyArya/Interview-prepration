@@ -23,7 +23,7 @@ public:
 };
 
 // LeetCode - 90
-// Permutaion without duplicates
+// Subset without duplicates
 
 class Solution {
     void subsets(int i, int n, vector<int> &nums, vector<int> temp, vector<vector<int>> &ans){
